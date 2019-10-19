@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Source Code",
+			"path": "./src"
+		},
+		{
+			"name": "Uploads",
+			"path": "./uploads"
+		},
+	],
+	"settings": {}
+}
