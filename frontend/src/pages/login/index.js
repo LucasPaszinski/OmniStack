@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api'
 
-export default function Login() {
+export default function Login({history}) {
     const [email, setEmail] = useState('');
 
     async function handleSubmit(event) {
@@ -12,8 +12,8 @@ export default function Login() {
         console.log(response);
         const { _id } = response.data;
         console.log(_id);
-        localStorage.setItem("user", _id)
-         
+        localStorage.setItem("user", _id);
+        history.push('/dashboard')
     }
 
     return (

@@ -30,7 +30,7 @@ export default function New() {
 
 
         const response = await api.post(
-            'http://localhost:3333/spots', data, {headers:{user_id}}
+            '/spots', data, {headers:{user_id}}
             );
 
 }
