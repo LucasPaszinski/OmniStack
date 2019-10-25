@@ -18,8 +18,12 @@ const uploadConfig = require('./config/upload');
 const routes = express.Router();
 const upload = multer(uploadConfig);
 
+
+const password = require('./senhas.json');
+const {server_password} = password;
+
 //Connect to mongoose
-mongoose.connect(`mongodb+srv://paszinski:${JSON.stringify(server_key)}@omnistack-ntfwp.mongodb.net/sessions?retryWrites=true&w=majority`,{
+mongoose.connect(`mongodb+srv://paszinski:${server_password}@omnistack-ntfwp.mongodb.net/sessions?retryWrites=true&w=majority`,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 });

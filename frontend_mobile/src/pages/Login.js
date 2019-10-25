@@ -10,13 +10,13 @@ export default function Login({navigation}) {
     const[email, setEmail] = useState('');
     const[techs, setTechs] = useState('');
 
-    // useEffect(()=>{
-    //     AsyncStorage.getItem('user').then(user=>{
-    //         if(user){
-    //             navigation.navigate('Spots');
-    //         }
-    //     })
-    // },[]);
+    useEffect(()=>{
+        AsyncStorage.getItem('user').then(user=>{
+            if(user){
+                navigation.navigate('Spots');
+            }
+        })
+    },[]);
 
     async function handleSubmit(){
         // console.log(email);
@@ -28,7 +28,7 @@ export default function Login({navigation}) {
         await AsyncStorage.setItem('user',_id);
         await AsyncStorage.setItem('techs', techs);
 
-        //console.log(_id);
+        Console.log(_id);
 
         navigation.navigate('Spots');
 
