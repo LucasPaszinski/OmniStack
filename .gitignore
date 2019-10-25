@@ -27,3 +27,4 @@ yarn-error.log*
 .vs
 
 backend\src\senhas.json
+/backend/src/senhas.json
