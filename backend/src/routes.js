@@ -10,6 +10,7 @@ const SessionController = require('./controllers/SessionController');
 const SpotController = require('./controllers/SpotController');
 const DashBoardController = require('./controllers/DashBoardController');
 const BookingController = require('./controllers/BookingController');
+const Json = require('./senhas.json')
 
 const uploadConfig = require('./config/upload');
 
@@ -18,7 +19,7 @@ const routes = express.Router();
 const upload = multer(uploadConfig);
 
 //Connect to mongoose
-mongoose.connect("mongodb+srv://paszinski:banjiro19@omnistack-ntfwp.mongodb.net/sessions?retryWrites=true&w=majority",{
+mongoose.connect(`mongodb+srv://paszinski:${JSON.stringify(server_key)}@omnistack-ntfwp.mongodb.net/sessions?retryWrites=true&w=majority`,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 });

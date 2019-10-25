@@ -25,3 +25,5 @@ yarn-error.log*
 /Material/*
 *.mp4
 .vs
+
+backend\src\senhas.json
