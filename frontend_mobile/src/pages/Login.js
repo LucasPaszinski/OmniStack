@@ -19,16 +19,17 @@ export default function Login({navigation}) {
     },[]);
 
     async function handleSubmit(){
-        // console.log(email);
-        // console.log(techs);
+        console.log(email);
+        console.log(techs);
         const response = await api.post('/sessions',{email});
+        console.log(response);
 
         const {_id} = response.data;
 
         await AsyncStorage.setItem('user',_id);
         await AsyncStorage.setItem('techs', techs);
 
-        Console.log(_id);
+        console.log(_id);
 
         navigation.navigate('Spots');
 

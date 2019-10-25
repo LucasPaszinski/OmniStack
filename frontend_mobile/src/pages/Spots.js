@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, Image, SafeAreaView, AsyncStorage, StyleSheet } from 'react-native';
+import SpotList from '../components/SpotList';
+
 
 import logo from '../../assets/logo.png'
 
@@ -25,7 +27,8 @@ export default function Spots() {
     return (
         <SafeAreaView style={StyleSheet.conteiner}>
             <Image source={logo} />
-            <Text>{techs}</Text>
+
+            <SpotList/>
         </SafeAreaView>
     )
 }
