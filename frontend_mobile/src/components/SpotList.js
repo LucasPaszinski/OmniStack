@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView, AsyncStorage, StyleSheet } from 'react-native';
+import {withNavigation} from 'react-navigation';
 
 import api from '../services/api';
 
 
-export default function SpotList({ key, tech, navigation }) {
+function SpotList({ key, tech, navigation }) {
 
     const [spots, setSpots] = useState([]);
 
@@ -49,7 +50,6 @@ export default function SpotList({ key, tech, navigation }) {
         </SafeAreaView>
     )
 }
-
 
 const styles = StyleSheet.create({
     title:
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
         color:"#999",
         fontSize:20,
         marginTop:5,
-
     }
 })
+
+export default withNavigation(SpotList);

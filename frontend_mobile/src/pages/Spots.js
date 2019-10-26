@@ -44,7 +44,7 @@ export default function Spots({navigation}) {
             {/* FIM DA TENTATIVA MALUCA */}
 
             <ScrollView>
-                {techs.map((tec) => (<SpotList key={tec.id} tech={tec} navigation={navigation} />))}
+                {techs.map((tec) => (<SpotList key={tec.id} tech={tec}/>))}
             </ScrollView>
             <Text></Text>
 
