@@ -1,32 +1,32 @@
-import React, {useState, useEffect}from 'react';
-import { StyleSheet, AsyncStorage ,Text, Image, TextInput, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, AsyncStorage, Text, Image, TextInput, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native';
 
 import api from '../services/api';
 
 //Pixel density is dealth by react native
 import logo from '../../assets/logo.png'
 
-export default function Login({navigation}) {
-    const[email, setEmail] = useState('');
-    const[techs, setTechs] = useState('');
+export default function Login({ navigation }) {
+    const [email, setEmail] = useState('');
+    const [techs, setTechs] = useState('');
 
-    useEffect(()=>{
-        AsyncStorage.getItem('user').then(user=>{
-            if(user){
+    useEffect(() => {
+        AsyncStorage.getItem('user').then(user => {
+            if (user) {
                 navigation.navigate('Spots');
             }
         })
-    },[]);
+    }, []);
 
-    async function handleSubmit(){
+    async function handleSubmit() {
         console.log(email);
         console.log(techs);
-        const response = await api.post('/sessions',{email});
+        const response = await api.post('/sessions', { email });
         console.log(response);
 
-        const {_id} = response.data;
+        const { _id } = response.data;
 
-        await AsyncStorage.setItem('user',_id);
+        await AsyncStorage.setItem('user', _id);
         await AsyncStorage.setItem('techs', techs);
 
         console.log(_id);
@@ -40,11 +40,11 @@ export default function Login({navigation}) {
         //Necessário apenas para IOS no android isso é default 
         //(Tive que mante ativo para funcionar no MOTO Z2 Play
         //enabled={Platform.OS === 'ios'} é o codigo para ativar apenas para um sistema operácional
-        <KeyboardAvoidingView 
-        behavior='padding'
-        style={styles.container}>
-        
-            <Image source={logo} style={styles.image}/>
+        <KeyboardAvoidingView
+            behavior='padding'
+            style={styles.container}>
+
+            <Image source={logo} style={styles.image} />
             <View style={styles.form}>
                 <Text style={styles.label}>
                     Seu email *
@@ -76,11 +76,11 @@ export default function Login({navigation}) {
                     onChangeText={setTechs}
                 />
 
-                <TouchableOpacity 
-                onPress={handleSubmit}
-                style={styles.button}>
-                <Text style={styles.buttonText}>
-                    Chega aí e Borá lá!
+                <TouchableOpacity
+                    onPress={handleSubmit}
+                    style={styles.button}>
+                    <Text style={styles.buttonText}>
+                        Chega aí e Borá lá!
                 </Text>
                 </TouchableOpacity>
 
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    image:{
+    image: {
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -127,17 +127,17 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 3,
     },
-    button:{
-        height : 42,
-        backgroundColor :'#f05a5b',
-        justifyContent:'center',
-        alignItems:'center', 
-        borderRadius: 4 ,
-        alignSelf:'stretch'      
+    button: {
+        height: 42,
+        backgroundColor: '#f05a5b',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+        alignSelf: 'stretch'
     },
-    buttonText:{
-        color:'#FFF',
-        fontWeight :'bold',
-        fontSize:20
+    buttonText: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 20
     },
 });
