@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView, AsyncStorage, StyleSheet } from 'react-native';
+import { Text, FlatList, Image, TouchableOpacity, SafeAreaView, AsyncStorage, StyleSheet } from 'react-native';
 import {withNavigation} from 'react-navigation';
 
 import api from '../services/api';
@@ -20,9 +20,9 @@ function SpotList({ key, tech, navigation }) {
         LoadSpots();
     }, []);
 
-    async function handleNavigate()
+    async function handleNavigate(id)
     {
-        navigation.navigate('Book');
+        navigation.navigate('Book', {id});
     }
 
     return (
@@ -41,7 +41,7 @@ function SpotList({ key, tech, navigation }) {
                         }} />
                         <Text style={styles.company}>{item.company}</Text>
                         <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : "FREE"}</Text>
-                        <TouchableOpacity onPress={handleNavigate} style={styles.button}><Text style={styles.buttonText}>Reservar !!</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleNavigate(item._id)} style={styles.button}><Text style={styles.buttonText}>Reservar !!</Text></TouchableOpacity>
                     </SafeAreaView>
 
                 )
