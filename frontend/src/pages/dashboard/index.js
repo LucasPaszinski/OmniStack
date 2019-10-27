@@ -2,9 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import './styles.css';
+import socket from 'socket.io-client'
 
 export default function Dashboard() {
     const [spots, setSpots] = useState([]);
+
+    useEffect(()=>{
+        async function connectSocket(){
+
+            const user_id = await localStorage.getItem('user');
+
+
+            const io = socket('http://localhost:3333',{
+                query:{user_id},
+            });
+
+            // //Receiving data
+            // io.on('Hello', data => {
+            //     console.log(data)
+            // })        
+            
+            // // Sending data
+            // io.emit('World','The secret of Ze Worldo is')
+
+            
+        }
+        connectSocket();
+    },[])
 
     useEffect(() => {
         async function loadSpots() {
