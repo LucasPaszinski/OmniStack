@@ -10,7 +10,6 @@ const SessionController = require('./controllers/SessionController');
 const SpotController = require('./controllers/SpotController');
 const DashBoardController = require('./controllers/DashBoardController');
 const BookingController = require('./controllers/BookingController');
-const Json = require('./senhas.json')
 
 const uploadConfig = require('./config/upload');
 

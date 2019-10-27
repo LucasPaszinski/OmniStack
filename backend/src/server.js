@@ -10,8 +10,42 @@ const path = require('path');
 //Routes import the path file routes config 
 const routes = require('./routes');
 
+//Communication Protocol Socket.io
+const socket = require('socket.io');
+
+//Comunication protocol Http
+const http = require('http');
+
 //Instance express app
 const app = express();
+
+// Define server dividind it from express
+const server = http.Server(app);
+// Allow server to listen web socket.io 
+const io = socket(server);
+
+const connectedUser = {};
+
+io.on('connection', socket => {
+
+
+    const {user_id} = socket.handshake.query
+    connectedUser[user_id] = socket.id;
+
+    console.log(`Usuario ${user_id} conectado usando o socket id: ${socket.id} `);
+
+
+    // //Sendind data
+    // socket.emit('Hello','is it me you looking for');      
+     
+    // //Receiving data
+    // socket.on('World', data => {
+    //     console.log(data);
+    // })
+
+});
+
+
 
 app.use(cors());
 
@@ -25,5 +59,5 @@ app.use('/files', express.static(path.resolve(__dirname,'..','uploads')));
 //Use the importes routes
 app.use(routes);
 
-//Set port
-app.listen(3333);
+//Set port now with server http and websocket
+server.listen(3333);
