@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, Image, SafeAreaView, AsyncStorage, StyleSheet } from 'react-native';
 import SpotList from '../components/SpotList';
-
-
 import logo from '../../assets/logo.png'
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
@@ -44,7 +42,7 @@ export default function Spots({navigation}) {
             {/* FIM DA TENTATIVA MALUCA */}
 
             <ScrollView>
-                {techs.map((tec) => (<SpotList key={tec.id} tech={tec}/>))}
+                {techs.map((tec) => (<SpotList key={tec} tech={tec}/>))}
             </ScrollView>
             <Text></Text>
 

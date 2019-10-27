@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Text, FlatList, Image, TouchableOpacity, SafeAreaView, AsyncStorage, StyleSheet } from 'react-native';
 import {withNavigation} from 'react-navigation';
-
 import api from '../services/api';
-
+import {ip_address} from '../services/ip.json'
 
 function SpotList({ key, tech, navigation }) {
 
@@ -37,7 +36,7 @@ function SpotList({ key, tech, navigation }) {
                 renderItem={({ item }) => (
                     <SafeAreaView style={styles.listItem}>
                         <Image style={styles.thumbnail} source={{
-                            uri: item.thumbnail_url.replace('localhost', '192.168.25.8')  
+                            uri: item.thumbnail_url.replace('localhost', ip_address)  
                         }} />
                         <Text style={styles.company}>{item.company}</Text>
                         <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : "FREE"}</Text>
