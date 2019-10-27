@@ -29,7 +29,7 @@ const connectedUser = {};
 io.on('connection', socket => {
 
 
-    const {user_id} = socket.handshake.query
+    const { user_id } = socket.handshake.query
     connectedUser[user_id] = socket.id;
 
     console.log(`Usuario ${user_id} conectado usando o socket id: ${socket.id} `);
@@ -37,7 +37,7 @@ io.on('connection', socket => {
 
     // //Sendind data
     // socket.emit('Hello','is it me you looking for');      
-     
+
     // //Receiving data
     // socket.on('World', data => {
     //     console.log(data);
@@ -45,6 +45,14 @@ io.on('connection', socket => {
 
 });
 
+// Isso adiciona o io em todas as requisições do node
+app.use((req, res, next) => { 
+    req.io = io;
+    req.connectedUser = connectedUser;
+
+    return next();
+
+});
 
 
 app.use(cors());
@@ -53,7 +61,7 @@ app.use(cors());
 app.use(express.json());
 
 //files 
-app.use('/files', express.static(path.resolve(__dirname,'..','uploads')));
+app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
 
 
 //Use the importes routes

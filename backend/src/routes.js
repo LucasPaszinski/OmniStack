@@ -10,6 +10,9 @@ const SessionController = require('./controllers/SessionController');
 const SpotController = require('./controllers/SpotController');
 const DashBoardController = require('./controllers/DashBoardController');
 const BookingController = require('./controllers/BookingController');
+const ApprovalController = require('./controllers/ApprovalController');
+const RejectionController = require('./controllers/RejectionController');
+
 
 const uploadConfig = require('./config/upload');
 
@@ -35,5 +38,8 @@ routes.post('/spots', upload.single('thumbnail'), SpotController.store);
 routes.get('/spots', SpotController.index);
 routes.get('/dashboard', DashBoardController.show);
 routes.post('/spots/:spot_id/bookings', BookingController.store);
+routes.post('/booking/:booking_id/approvals',ApprovalController.store);
+routes.post('/booking/:booking_id/rejections',RejectionController.store);
+
 
 module.exports = routes;

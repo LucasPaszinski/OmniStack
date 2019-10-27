@@ -24,29 +24,9 @@ export default function Spots({navigation}) {
     return (
         <SafeAreaView style={StyleSheet.conteiner}>
             <Image source={logo} style={styles.logo} />
-
-            {/* {techs.map((tec)=> (<SpotList key={tec.id} tech={tec}/>))} */}
-
-            {/* INICIO DA TENTATIVA MALUCA */}
-            {/* <FlatList
-                style={styles.list}
-                data={techs}
-                keyExtractor={item => item._id}
-                vertical
-                showsVeerticalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <SpotList key={item} tech={item}/>
-                )
-                }
-            /> */}
-            {/* FIM DA TENTATIVA MALUCA */}
-
             <ScrollView>
                 {techs.map((tec) => (<SpotList key={tec} tech={tec}/>))}
             </ScrollView>
-            <Text></Text>
-
-
         </SafeAreaView>
     )
 }

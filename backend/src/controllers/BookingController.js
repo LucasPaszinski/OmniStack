@@ -12,9 +12,18 @@ module.exports = {
             date,
         });
 
+
+
         await booking.populate('spot').populate('user').execPopulate();
 
-        console.log(booking)
+        const spot_owner_socket = req.connectedUser[booking.spot.user]
+
+        if(spot_owner_socket)
+        {
+            req.io.to(spot_owner_socket).emit('booking_req', booking)
+        }
+
+        console.log('Enviando as informações de booking para o frontend: \n'+booking)
 
         return res.json(booking);
 
