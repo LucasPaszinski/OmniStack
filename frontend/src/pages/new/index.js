@@ -4,7 +4,7 @@ import './styles.css'
 import api from '../../services/api'
 
 
-export default function New() {
+export default function New({history}) {
     const [thumbnail, setThumbnail] = useState(null);
     const [company, setCompany] = useState('');
     const [techs, setTechs] = useState('');
@@ -32,6 +32,8 @@ export default function New() {
         const response = await api.post(
             '/spots', data, {headers:{user_id}}
             );
+
+        history.push('/dashboard')
 
 }
 return (

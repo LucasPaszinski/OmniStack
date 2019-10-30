@@ -24,11 +24,11 @@ export default function Spots({ navigation }) {
       });
       io.on("booking_response", booking => {
         Alert.alert(
-          `Sua reserva em ${booking.spot.company} em ${booking.date} foi ${
+          `Sua reserva em ${booking.spot.company} para ${booking.date} foi ${
             booking.approved ? "Aprovada" : "Rejeitada"
           }`
         );
-        console.log("BIrlllll!!");
+        console.log("Birlllll!!");
       });
     });
   }, []);
