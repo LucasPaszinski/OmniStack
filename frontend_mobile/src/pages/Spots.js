@@ -5,20 +5,21 @@ import {
   SafeAreaView,
   AsyncStorage,
   StyleSheet,
-  Alert
+  Alert,
+  TouchableOpacity
 } from "react-native";
 import SpotList from "../components/SpotList";
 import logo from "../../assets/logo.png";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import socketio from "socket.io-client";
-import {ip_address} from '../services/ip.json';
+import { ip_address } from "../services/ip.json";
 
 export default function Spots({ navigation }) {
   const [techs, setTechs] = useState([]);
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    AsyncStorage.getItem('user').then(user_id => {
+    AsyncStorage.getItem("user").then(user_id => {
       const io = socketio(`http://${ip_address}:3333`, {
         query: { user_id }
       });
@@ -45,20 +46,34 @@ export default function Spots({ navigation }) {
     });
   }, []);
 
+  async function handleSubmit() {
+    await AsyncStorage.removeItem('techs');
+    navigation.navigate("Login");
+  }
+
   return (
-    <SafeAreaView style={StyleSheet.conteiner}>
-      <Image source={logo} style={styles.logo} />
-      <ScrollView>
+<>
+    <Image source={logo} style={styles.logo} />
+      <ScrollView style={StyleSheet.scrollView}>
+      
+
         {techs.map(tec => (
           <SpotList key={tec} tech={tec} />
         ))}
+        <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+        <Text style={styles.buttonText}>Trocar Techs</Text>
+        </TouchableOpacity>
       </ScrollView>
-    </SafeAreaView>
+
+</>
+
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollView:{
+    //flexGrow: 1,
+    marginBottom: 200,
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
@@ -67,6 +82,19 @@ const styles = StyleSheet.create({
     height: 32,
     resizeMode: "contain",
     alignSelf: "center",
-    marginTop: 50
+    margin: 30
+  },
+  button: {
+    height: 42,
+    backgroundColor: '#ccc',
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    margin:20,
+  },
+  buttonText: {
+    color: "#FFF",
+    fontWeight: "bold",
+    fontSize: 20
   }
 });

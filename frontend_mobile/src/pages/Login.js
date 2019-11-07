@@ -10,13 +10,24 @@ export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [techs, setTechs] = useState('');
 
-    // useEffect(() => {
-    //     AsyncStorage.getItem('user').then(user => {
-    //         if (user) {
-    //             navigation.navigate('Spots');
-    //         }
-    //     })
-    // }, []);
+    useEffect(() => {
+        async function shouldGoToSpots(){
+
+        const user_id= await AsyncStorage.getItem('user');
+        console.log(`User id: ${user_id}`);
+        if(user_id)
+        {
+            const response = await api.get('/sessions', {params:{user_id}});
+            setEmail(response.data.email); 
+            console.log(response);
+        }
+        const techs = await AsyncStorage.getItem('techs');
+        if (user && techs) {
+                navigation.navigate('Spots');
+        }
+    }
+    shouldGoToSpots();
+    }, []);
 
     async function handleSubmit() {
         console.log(email);

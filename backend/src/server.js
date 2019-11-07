@@ -34,15 +34,6 @@ io.on('connection', socket => {
 
     console.log(`Usuario ${user_id} conectado usando o socket id: ${socket.id} `);
 
-
-    // //Sendind data
-    // socket.emit('Hello','is it me you looking for');      
-
-    // //Receiving data
-    // socket.on('World', data => {
-    //     console.log(data);
-    // })
-
 });
 
 // Isso adiciona o io em todas as requisições do node

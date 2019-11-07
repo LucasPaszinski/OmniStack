@@ -19,10 +19,11 @@ const uploadConfig = require("./config/upload");
 const routes = express.Router();
 const upload = multer(uploadConfig);
 
-const password = require("./senhas.json");
-const { server_password } = password;
+
 
 if (false) {
+  const password = require("./senhas.json");
+  const { server_password } = password;
   //Connect to mongoose
   mongoose.connect(
     `mongodb+srv://paszinski:${server_password}@omnistack-ntfwp.mongodb.net/sessions?retryWrites=true&w=majority`,
@@ -33,7 +34,7 @@ if (false) {
   );
 } else {
   //Connect to mongoose
-  mongoose.connect(`mongodb://localhost:27017/localomni`, {
+  mongoose.connect(`mongodb://localhost:27017/localOmni`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
@@ -41,6 +42,7 @@ if (false) {
 
 //Post on user path
 routes.post("/sessions", SessionController.store);
+routes.get("/sessions/", SessionController.index);
 
 //Post on user path
 routes.post("/spots", upload.single("thumbnail"), SpotController.store);

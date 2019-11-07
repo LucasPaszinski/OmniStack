@@ -11,8 +11,15 @@ module.exports = {
         const user = await User.findOne({ email });
         if (!user) {
             await User.create({ email });
-        }
+            user = await User.findOne({ email });
+        }  
+        return res.json(user);
+    },
 
+    async index(req, res){
+        const { user_id } = req.query;
+        const user = await User.findById(user_id);
+        console.log(user);
         return res.json(user);
     }
 }
