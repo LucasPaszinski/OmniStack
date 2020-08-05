@@ -34,7 +34,7 @@ if (false) {
   );
 } else {
   //Connect to mongoose
-  mongoose.connect(`mongodb://localhost:27017/localOmni`, {
+  mongoose.connect(`mongodb://localhost:27017/aircnc`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
