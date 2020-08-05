@@ -3,7 +3,7 @@ import { StyleSheet, AsyncStorage, Text, Image, TextInput, TouchableOpacity, Vie
 
 import api from '../services/api';
 
-//Pixel density is dealth by react native
+//Pixel density is dealt by react native
 import logo from '../../assets/logo.png'
 
 export default function Login({ navigation }) {
